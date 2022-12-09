@@ -1,14 +1,32 @@
 import socket
 from time import sleep
+import serial
+import configparser
 
+config = configparser.ConfigParser()
+config.read('config.ini')
+COM = config['SERIAL']['COM']
+PORT = config['SERIAL']['PORT']
+# print(COM)
+ser = serial.Serial(PORT, COM, timeout=1)
+sleep(2)
 
 def main():
+
+    
+
     interfaces = socket.getaddrinfo(
         host=socket.gethostname(), port=None, family=socket.AF_INET)
     allips = [ip[-1][0] for ip in interfaces]
 
-    msg = b'hello world'
+    
     while True:
+        line = ser.readline()
+        if line:
+            msg = b'sensor'
+            msg += line
+        else:
+            continue
 
         for ip in allips:
             print(f'sending on {ip}')
@@ -19,5 +37,7 @@ def main():
 
         sleep(2)
 
-
-main()
+try:
+    main()
+except KeyboardInterrupt:
+    ser.close()

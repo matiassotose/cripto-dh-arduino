@@ -1,12 +1,13 @@
 import scapy.all as scapy
-from scapy.layers.inet import UDP
 
 def sniff(interface):
     scapy.sniff(iface=interface,store=False,prn=sniffed_packet)
 
 def sniffed_packet(packet):
     if type(packet.payload.payload.payload) == scapy.packet.Raw:
-        print(packet.payload.payload.payload)
+        payload = bytes(packet.payload.payload.payload)
+        if payload[0:6] == b'sensor':
+            print(float(payload[6:-2].decode()))
 
 def main():
     sniff("en0")
