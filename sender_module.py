@@ -11,15 +11,13 @@ PORT = config['SERIAL']['PORT']
 ser = serial.Serial(PORT, COM, timeout=1)
 sleep(2)
 
-def main():
 
-    
+def main():
 
     interfaces = socket.getaddrinfo(
         host=socket.gethostname(), port=None, family=socket.AF_INET)
     allips = [ip[-1][0] for ip in interfaces]
 
-    
     while True:
         line = ser.readline()
         if line:
@@ -36,6 +34,7 @@ def main():
             sock.close()
 
         sleep(2)
+
 
 try:
     main()
