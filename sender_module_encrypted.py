@@ -1,10 +1,10 @@
 import socket
 from time import sleep
 import serial
-from tcp_client_module import connection as enviar
-from tcp_server_module import server as recibir
+from tcp.tcp_client_module import connection as enviar
+from tcp.tcp_server_module import server as recibir
 import configparser
-import dhlib
+import aux.dhlib as dhlib
 
 config = configparser.ConfigParser()
 config.read('config.ini')
