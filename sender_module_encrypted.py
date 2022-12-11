@@ -1,6 +1,6 @@
 import socket
 from time import sleep
-#import serial
+import serial
 from tcp_client_module import connection as enviar
 from tcp_server_module import server as recibir
 import configparser
@@ -10,7 +10,6 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 COM = config['SERIAL']['COM']
 PORT = config['SERIAL']['PORT']
-print(COM)
 ser = serial.Serial(PORT, COM, timeout=1)
 sleep(2)
 
@@ -33,12 +32,11 @@ def main():
    
     while True:
        
-        msg = b'sensor'
-        msg += b'mensaje'
         line = ser.readline()
         if line:
             msg = b'sensor'
-            msg += line
+            payload = dhlib.dhEncrypt(line.decode()[0:-2],my_full)
+            msg += payload.encode('utf-8')
         else:
             continue
 
