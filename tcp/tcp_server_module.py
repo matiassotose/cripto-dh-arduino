@@ -31,4 +31,4 @@ def server(host,port):
             # Clean up the connection
             print("Closing current connection")
             connection.close()
-            return not_null_data
+            return int.from_bytes(not_null_data,"big")
