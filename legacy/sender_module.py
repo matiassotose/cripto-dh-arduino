@@ -4,7 +4,7 @@ import serial
 import configparser
 
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read('../config.ini')
 COM = config['SERIAL']['COM']
 PORT = config['SERIAL']['PORT']
 # print(COM)
