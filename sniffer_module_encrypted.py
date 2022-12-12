@@ -1,9 +1,9 @@
 import scapy.all as scapy
-import aux.dhlib as dhlib
+import auxilary_modules.dhlib as dhlib
 from tcp.tcp_client_module import connection as enviar
 from tcp.tcp_server_module import server as recibir
 import tempfile
-from aux.upload_aws_module import upload
+from auxilary_modules.upload_aws_module import upload
 
 pub = 151
 priv = 157

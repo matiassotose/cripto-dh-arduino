@@ -4,7 +4,8 @@ import serial
 from tcp.tcp_client_module import connection as enviar
 from tcp.tcp_server_module import server as recibir
 import configparser
-import aux.dhlib as dhlib
+import auxilary_modules.dhlib as dhlib
+
 
 config = configparser.ConfigParser()
 config.read('config.ini')
